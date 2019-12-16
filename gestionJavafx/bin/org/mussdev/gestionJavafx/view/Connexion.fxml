@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="381.0" style="-fx-background-color: #9DC183;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mussdev.gestionJavafx.view.ConnexionController">
+   <children>
+      <SplitPane dividerPositions="0.2849604221635884" layoutX="80.0" layoutY="33.0" prefHeight="300.0" prefWidth="381.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="204.0">
+               <children>
+                  <ImageView fitHeight="102.0" fitWidth="104.0" layoutX="3.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/imgser.png" />
+                     </image></ImageView>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="231.0" prefWidth="281.0">
+               <children>
+                  <Label layoutX="81.0" layoutY="14.0" text="Connectez-vous" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="txtLogin" layoutX="43.0" layoutY="73.0" prefHeight="25.0" prefWidth="198.0" promptText="Login...">
+                     <font>
+                        <Font name="Times New Roman Italic" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="buttonFermer" layoutX="69.0" layoutY="148.0" mnemonicParsing="false" onAction="#btnFermer" style="-fx-background-color: #3BB143;" text="Fermer" textFill="#f2f2f2">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="buttonValider" layoutX="142.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #3BB143;" text="Valider" textFill="#f2f2f2">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="14.0" />
+                     </font></Button>
+                  <Label fx:id="labelInfos" alignment="CENTER" contentDisplay="CENTER" layoutY="39.0" prefHeight="26.0" prefWidth="234.0" textFill="#e10c0c" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="Times New Roman Italic" size="13.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="fieldPassword" layoutX="43.0" layoutY="109.0" prefHeight="25.0" prefWidth="198.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

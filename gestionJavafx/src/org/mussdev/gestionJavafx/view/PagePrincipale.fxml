@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mussdev.gestionJavafx.view.AccueilController">
+   <children>
+      <MenuBar layoutY="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu fx:id="ItemAccueil" mnemonicParsing="false" text="Accueil">
+            <items>
+              <MenuItem fx:id="menuQuitterAccueil" mnemonicParsing="false" onAction="#allerFenetreAccueil" text="Quitter" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Stock">
+            <items>
+              <MenuItem fx:id="insererArticleJardinier" mnemonicParsing="false" onAction="#afficherFeneInsererArticle" text="+ Inserer article" />
+                  <MenuItem fx:id="menuItemconsulterArticle" mnemonicParsing="false" onAction="#consulterArticle" text="# Consulter article" />
+                  <MenuItem fx:id="supprimerArticleJardinier" mnemonicParsing="false" onAction="#afficherFeneInsererModSuppArticle" text="- Supprimer/Modifier article" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Vente">
+            <items>
+              <MenuItem fx:id="insererClientCommercial" mnemonicParsing="false" onAction="#appelFenetreInsererClient" text="+ Inserer client" />
+                  <MenuItem fx:id="menuItemconsulterClient" mnemonicParsing="false" onAction="#consulterClient" text="# Consulter client" />
+                  <MenuItem fx:id="supprimerClientCommercial" mnemonicParsing="false" onAction="#afficherFeneModSuppClient" text="- Supprimer/Modifier client" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="insererCommandeCom" mnemonicParsing="false" onAction="#insererCommande" text="+ Inserer commande" />
+                  <MenuItem fx:id="consulterCommandeCom" mnemonicParsing="false" onAction="#voirPaneConsulterCommande" text=" # Consulter commande" />
+                  <MenuItem fx:id="supprimerCommandeCom" mnemonicParsing="false" text="- Supprimer commande" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="insererLivraisonCom" mnemonicParsing="false" onAction="#appelFenetreEnregistLivraison" text="+ Inserer livraison" />
+                  <MenuItem fx:id="menuItemconsulterLivraisonCom" mnemonicParsing="false" onAction="#consulterLivraisonCom" text="# Consulter livraison" />
+                  <MenuItem fx:id="supprimerLivraisonCom" mnemonicParsing="false" text="- Supprimer livraison" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Suivi">
+               <items>
+                  <MenuItem fx:id="consulterVentPeriodGer" mnemonicParsing="false" onAction="#afficherFeneVentePeriode" text="# Consulter vente/periode" />
+                  <MenuItem fx:id="consulterSoldeClientGer" mnemonicParsing="false" onAction="#afficherFeneSoldClient" text="# Consulter solde client" />
+                  <MenuItem fx:id="consulterVenteArticleGer" mnemonicParsing="false" onAction="#afficherFeneVenteArticle" text="# Consulter vente/article" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <Pane fx:id="paneConsulterArticle" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TableView fx:id="tableViewArticle" layoutX="109.0" layoutY="44.0" prefHeight="338.0" prefWidth="597.0">
+              <columns>
+                <TableColumn fx:id="tblColumnDescripArticle" prefWidth="285.0" text="Desciption" />
+                <TableColumn fx:id="tblColumnPrixUniArticle" prefWidth="130.0" text="Prix unitaire" />
+                  <TableColumn fx:id="tblColumnQteStockArticle" prefWidth="181.0" text="Quantite en stock" />
+              </columns>
+            </TableView>
+            <Label fx:id="labelTitreArticle" alignment="CENTER" layoutX="229.0" layoutY="14.0" prefHeight="17.0" prefWidth="342.0" text="Liste des artices">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnVoirArticle" layoutX="537.0" layoutY="386.0" mnemonicParsing="false" onAction="#voirArtcile" text="Cliquer pour voir les articles" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneConsulterClient" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TableView fx:id="tableViewConsultClient" layoutX="119.0" layoutY="67.0" prefHeight="301.0" prefWidth="581.0">
+              <columns>
+                <TableColumn fx:id="tbColumnNomClient" prefWidth="271.0" text="Nom client" />
+                <TableColumn fx:id="tbColumnTelClient" prefWidth="308.0" text="Telephone" />
+              </columns>
+            </TableView>
+            <Label fx:id="labelTitreClient" contentDisplay="CENTER" layoutX="321.0" layoutY="24.0" prefHeight="23.0" prefWidth="163.0" text="Liste de clients" textAlignment="CENTER">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnClient" layoutX="545.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnconsulterClient" text="Cliquer pour voir les clients" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneConsulterCommande" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="302.0" layoutY="21.0" text="Liste des commandes" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnVoirCommande" layoutX="559.0" layoutY="375.0" mnemonicParsing="false" onAction="#consulterCommande" text="Cliquer pour voir les commandes" textAlignment="CENTER" />
+            <TableView fx:id="tableViewConsulterCommand" layoutX="45.0" layoutY="61.0" prefHeight="301.0" prefWidth="705.0">
+              <columns>
+                <TableColumn fx:id="tableColumnNumCom" prefWidth="75.0" text="numeroCom" />
+                <TableColumn fx:id="tableColumnNonClt" prefWidth="152.0" text="Nom Client" />
+                  <TableColumn fx:id="tableColumnDescArticle" prefWidth="171.0" text="Description" />
+                  <TableColumn fx:id="tableColumPriUni" prefWidth="89.0" text="Prix Unitaire" />
+                  <TableColumn fx:id="tableColumnQte" prefWidth="56.0" text="Quantite" />
+                  <TableColumn fx:id="tableColumnDatComm" prefWidth="161.0" text="Date Commande" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Pane fx:id="paneLivraisonConsulter" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="labelInfosLivraison" contentDisplay="CENTER" layoutX="297.0" layoutY="14.0" text="LES INFORMATIONS SUR LES LIVRAISONS">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableViewConsultLivraison" layoutX="17.0" layoutY="48.0" prefHeight="321.0" prefWidth="767.0">
+              <columns>
+                <TableColumn fx:id="tblColumnNomCltLivr" prefWidth="141.0" text="Nom Client" />
+                <TableColumn fx:id="tblColumnDescptArtclLivr" prefWidth="132.0" text="Description Article" />
+                  <TableColumn fx:id="tblColumnQteLivr" prefWidth="100.0" text="Quantité Livrée" />
+                  <TableColumn fx:id="tblColumnPrixU" prefWidth="88.0" text="Prix Unitaire" />
+                  <TableColumn fx:id="tblColumnDateComLivr" prefWidth="138.0" text="Date Commande" />
+                  <TableColumn fx:id="tblColumnDateLivr" prefWidth="166.0" text="Date Livraison" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnVoirDetailLivr" layoutX="555.0" layoutY="378.0" mnemonicParsing="false" onAction="#voirLivraison" text="Cliquer pour voir les détails de livraisons" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneInsererArticle" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="labelTitreInserArticle" alignment="CENTER" contentDisplay="CENTER" layoutX="305.0" layoutY="14.0" text="Enregistrement d'article">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Label>
+            <GridPane fx:id="gridPaneInserArticl" layoutX="200.0" layoutY="104.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #D0F0C0;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="182.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="218.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lblDescrpArticle" text="Description :">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPrixUArticle" text="Prix unitaire :" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblQteArticle" text="Quantité de stock :" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnEnregistrerArticle" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#enregistrerArticle" prefHeight="37.0" prefWidth="135.0" style="-fx-background-color: #3BB143;" text="Enregistrer" textFill="#1e0707" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="txtFieldDescpArticle" prefHeight="52.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtFieldPrixUnitaire" prefHeight="39.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtFieldQteStock" prefHeight="34.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <Label fx:id="labelInfosEnregArticle" layoutX="174.0" layoutY="57.0" prefHeight="28.0" prefWidth="445.0" textFill="#eb0a0a">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paneInsertClient" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="labelTitreInserClient" layoutX="305.0" layoutY="37.0" text="Enregistrer un client !" textAlignment="CENTER">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelInfosInserClient" layoutX="212.0" layoutY="103.0" prefHeight="28.0" prefWidth="372.0" textFill="#eb0c0c" wrapText="true">
+               <font>
+                  <Font name="Times New Roman Italic" size="17.0" />
+               </font>
+            </Label>
+            <GridPane layoutX="250.0" layoutY="151.0" prefHeight="200.0" prefWidth="342.0" style="-fx-background-color: #D0F0C0;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="114.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="228.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Nom client :">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Telephone :" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtFieldNomClient" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="txtFieldTelClient" prefHeight="41.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnInserClient" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#InsererClient" style="-fx-background-color: #3BB143;" text="Enregistrer" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="paneInsertCommande" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="248.0" layoutY="14.0" text="Enregistrer une commande">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="27.0" />
+               </font>
+            </Label>
+            <SplitPane fx:id="spltPaneCommande" dividerPositions="0.5388471177944862" layoutX="-1.0" layoutY="82.0" prefHeight="344.0" prefWidth="800.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <TableView fx:id="tableViewAffichNomClientCom" layoutY="7.0" prefHeight="342.0" prefWidth="288.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="txtColumnNocltCommand" prefWidth="109.0" text="No Client" />
+                              <TableColumn fx:id="txtColumNomCltCommand" prefWidth="177.0" text="Noms clients" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="TableViewNoArticle" layoutX="288.0" prefHeight="342.0" prefWidth="141.0">
+                          <columns>
+                            <TableColumn fx:id="tableColumnNoArtilceCom" prefWidth="139.0" text="No Article" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="570.0">
+                     <children>
+                        <TextField fx:id="textFieldNoClit" layoutX="270.0" layoutY="84.0" prefHeight="30.0" prefWidth="86.0" />
+                        <DatePicker fx:id="datePickerCommande" layoutX="183.0" layoutY="19.0" prefHeight="34.0" prefWidth="174.0" />
+                        <Button fx:id="btnEnregistrerCommande" layoutX="255.0" layoutY="277.0" mnemonicParsing="false" onAction="#enregistrerCommande" style="-fx-background-color: #3BB143;" text="Enregistrer">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="7.0" layoutY="28.0" text="Date de commande :">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="7.0" layoutY="91.0" text="Numéro client :">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="9.0" layoutY="139.0" text="Numéro article :">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textfieldNumeroArticle" layoutX="267.0" layoutY="132.0" prefHeight="30.0" prefWidth="92.0" />
+                        <TextField fx:id="txtfieldQteCommande" layoutX="208.0" layoutY="207.0" />
+                        <Label layoutX="9.0" layoutY="211.0" text="Qauntité :">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+            <Label fx:id="lblnfosInserCom" layoutX="139.0" layoutY="50.0" prefHeight="25.0" prefWidth="522.0" textAlignment="CENTER" textFill="#ee0a0a" wrapText="true">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paneInserLivraison" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="339.0" layoutY="14.0" text="Enregistrer les livraisons">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="22.0" />
+               </font>
+            </Label>
+            <SplitPane dividerPositions="0.29797979797979796" layoutX="-1.0" layoutY="73.0" prefHeight="353.0" prefWidth="800.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="351.0" prefWidth="156.0">
+                     <children>
+                        <TableView fx:id="tableViewEnregistLivraison" layoutX="8.0" layoutY="7.0" prefHeight="351.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="tblColumnNoCommand" prefWidth="92.0" text="No Commande" />
+                            <TableColumn fx:id="tblColumnEnregArticle" prefWidth="83.0" text="No Article" />
+                              <TableColumn fx:id="tblColumnQteDeComm" prefWidth="59.0" text="Quantite" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="351.0" prefWidth="421.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="30.0" text="Date de livraision :">
+                           <font>
+                              <Font name="Times New Roman" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="79.0" text="N° Commande :">
+                           <font>
+                              <Font name="Times New Roman" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="136.0" text="N° Article :">
+                           <font>
+                              <Font name="Times New Roman" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="185.0" text="Qauntités livrées :">
+                           <font>
+                              <Font name="Times New Roman" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtfieldNoComm" layoutX="253.0" layoutY="75.0" prefHeight="25.0" prefWidth="174.0" />
+                        <TextField fx:id="txtfieldNoArticle" layoutX="253.0" layoutY="132.0" prefHeight="25.0" prefWidth="174.0" />
+                        <TextField fx:id="txtfieldQteLivraison" layoutX="253.0" layoutY="181.0" prefHeight="25.0" prefWidth="174.0" />
+                        <Button fx:id="btnEnregistrerLivraison" layoutX="317.0" layoutY="241.0" mnemonicParsing="false" onAction="#enregistrerLivraison" style="-fx-background-color: #3BB143;" text="Enregistrer">
+                           <font>
+                              <Font name="Times New Roman Bold Italic" size="18.0" />
+                           </font>
+                        </Button>
+                        <DatePicker fx:id="datepickerLivraison" layoutX="253.0" layoutY="26.0" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+            <Label fx:id="labelInfosLivraison" layoutX="171.0" layoutY="46.0" prefHeight="25.0" prefWidth="522.0" textFill="#e80a0a">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paneVenteParPeriode" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <SplitPane dividerPositions="0.29797979797979796" layoutX="-1.0" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <DatePicker fx:id="datePickerPeriode" layoutX="24.0" layoutY="118.0" />
+                        <Label alignment="CENTER" layoutX="4.0" layoutY="72.0" prefHeight="17.0" prefWidth="218.0" text="Selectionné une période ">
+                           <font>
+                              <Font name="Times New Roman Bold Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnValiderVentePeriode" layoutX="76.0" layoutY="244.0" mnemonicParsing="false" onAction="#afficherGraphVentePeriode" text="Valider">
+                           <font>
+                              <Font name="Times New Roman Bold Italic" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="labelInfosVentePeriode" alignment="CENTER" layoutX="10.0" layoutY="309.0" prefHeight="30.0" prefWidth="218.0" textFill="#e80909">
+                           <font>
+                              <Font name="Times New Roman Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="datePickerSedPeriode" layoutX="24.0" layoutY="187.0" prefHeight="25.0" prefWidth="174.0" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <BarChart fx:id="BarchartVentePeride" layoutX="8.0" layoutY="12.0" prefHeight="423.0" prefWidth="557.0" title="Vente par période" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis label="Les articles vendus" side="BOTTOM" fx:id="x" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="y" label="Quantité livrée" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </Pane>
+      <Pane fx:id="paneSoldeClient" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="362.0" layoutY="14.0" text="SOLDE CLIENT">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tbleViewSoldeClient" layoutX="14.0" layoutY="51.0" prefHeight="290.0" prefWidth="336.0">
+              <columns>
+                <TableColumn fx:id="tbColumnNomSoldCli" prefWidth="161.0" text="Nom client" />
+                  <TableColumn fx:id="tbColumnSoldCli" prefWidth="176.0" text="Solde client" />
+              </columns>
+            </TableView>
+            <BarChart fx:id="barchartSoldClient" layoutX="362.0" layoutY="51.0" prefHeight="342.0" prefWidth="427.0">
+              <xAxis>
+                <CategoryAxis label="Clients" side="BOTTOM" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" label="Soldes" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <Button fx:id="btnSoldClient" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#afficherSoldeClient" prefHeight="32.0" prefWidth="205.0" text="Cliquer pour voir le sode des clients" />
+            <Button fx:id="btnVoirGraphSoldeClient" layoutX="250.0" layoutY="355.0" mnemonicParsing="false" onAction="#voirGraphSoldClient" prefHeight="28.0" prefWidth="98.0" text="Voir le graphe" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneArticleVendu" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="266.0" layoutY="14.0" text="LA LISTE DES ARTICLES VENDUS">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableViewArticleVendu" layoutX="14.0" layoutY="47.0" prefHeight="329.0" prefWidth="305.0">
+              <columns>
+                <TableColumn fx:id="tbColumnNomArtcileVendu" prefWidth="196.0" text="Articles vendus" />
+                <TableColumn fx:id="tbColumnQteArticleVendu" prefWidth="108.0" text="Quantite vendue" />
+              </columns>
+            </TableView>
+            <Button fx:id="bttnVoirAricleVendu" layoutX="14.0" layoutY="386.0" mnemonicParsing="false" onAction="#voirArticleVendu" text="Cliquez pour voir les articles" />
+            <Button fx:id="btnVoirGrapheArticleVendu" layoutX="187.0" layoutY="386.0" mnemonicParsing="false" onAction="#voirGraphArticleVendu" prefHeight="25.0" prefWidth="133.0" text="Voir le graphe">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+            <BarChart fx:id="barChartArticleVendu" layoutX="328.0" layoutY="34.0" prefHeight="379.0" prefWidth="474.0">
+              <xAxis>
+                <CategoryAxis label="Article" side="BOTTOM" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" label="Quantite" side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </Pane>
+      <Pane fx:id="panedeleteArticle" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="244.0" layoutY="14.0" text="SUPPRIMER OU MODIFIER ARTICLE">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <SplitPane dividerPositions="0.4670807453416149" layoutX="-4.0" layoutY="66.0" prefHeight="363.0" prefWidth="807.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="388.0">
+                     <children>
+                        <TableView fx:id="tableViewModifSupprimArticle" layoutX="1.0" layoutY="7.0" prefHeight="321.0" prefWidth="372.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="numArtilcle" prefWidth="76.0" text="N°" />
+                            <TableColumn fx:id="tbColumnDescripModSupp" prefWidth="142.0" text="Description" />
+                              <TableColumn fx:id="tbColumnPrixUArticleModSupp" prefWidth="91.0" text="Prix unitaire" />
+                              <TableColumn fx:id="tbColumnQteArticleModSupp" prefWidth="63.0" text="Quantite" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnActualiserArticle" layoutX="14.0" layoutY="328.0" mnemonicParsing="false" onAction="#actualiserArticle" text="Actualiser" />
+                        <Button fx:id="btnSupprimerArticle" layoutX="97.0" layoutY="328.0" mnemonicParsing="false" onAction="#supprimerArticle" text="Supprimer" />
+                        <Button fx:id="btnModifierArticle" layoutX="187.0" layoutY="328.0" mnemonicParsing="false" onAction="#modifierArticle" text="Modifier" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="403.0">
+                     <children>
+                        <GridPane layoutX="14.0" layoutY="14.0" prefHeight="361.0" prefWidth="426.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="N° :" />
+                              <Label text="Description :" GridPane.rowIndex="1" />
+                              <Label text="Prix unitaire :" GridPane.rowIndex="2" />
+                              <Label text="Quantite :" GridPane.rowIndex="3" />
+                              <TextField fx:id="textfieldNumAritcle" prefHeight="33.0" prefWidth="213.0" GridPane.columnIndex="1" />
+                              <TextField fx:id="txetfieldDescripArticle" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txetfieldPrixUArticle" prefHeight="32.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="txetfieldQteArticle" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
+              </items>
+            </SplitPane>
+            <Label fx:id="labelInfosModSuppArticle" layoutX="186.0" layoutY="41.0" prefHeight="17.0" prefWidth="427.0" textFill="#f50606" wrapText="true">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font></Label>
+         </children>
+      </Pane>
+      <Pane fx:id="paneModSupprClient" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <SplitPane dividerPositions="0.3950310559006211" layoutX="-6.0" layoutY="53.0" prefHeight="373.0" prefWidth="807.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="324.0">
+                     <children>
+                        <Button fx:id="btnActualiserClient" layoutX="14.0" layoutY="332.0" mnemonicParsing="false" onAction="#actualiserClient" text="Actualiser" />
+                        <TableView fx:id="tableViewModSuppClient" layoutX="8.0" layoutY="6.0" prefHeight="321.0" prefWidth="315.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="tblColumnModSupprimNomclt" prefWidth="160.0" text="Nom client" />
+                            <TableColumn fx:id="tblColumnModSupprimTel" prefWidth="154.0" text="Telephone" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnModiierClient" layoutX="97.0" layoutY="332.0" mnemonicParsing="false" onAction="#modifierClient" text="Modifier" />
+                        <Button fx:id="btnSupprimerClient" layoutX="173.0" layoutY="332.0" mnemonicParsing="false" onAction="#supprimerClient" text="Supprimer" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <GridPane layoutX="69.0" layoutY="45.0" prefHeight="234.0" prefWidth="365.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="143.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="185.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="N° :" />
+                              <Label text="Nom client :" GridPane.rowIndex="1" />
+                              <Label text="Telephone :" GridPane.rowIndex="2" />
+                              <TextField fx:id="textfieldnumClt" prefHeight="39.0" prefWidth="206.0" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="textfieldNomClt" prefHeight="40.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="textfieldTelClt" prefHeight="36.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+            <Label layoutX="259.0" layoutY="5.0" text="SUPPRIMER OU MODIFIER UN CLIENT">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelnfosModSuppClient" layoutX="200.0" layoutY="36.0" prefHeight="17.0" prefWidth="400.0" textFill="#f20808" wrapText="true" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneAccueil" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button layoutX="688.0" layoutY="8.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Se deconnecter" />
+            <Label fx:id="labelInfoAccueil" layoutY="8.0" prefHeight="50.0" prefWidth="141.0" textFill="#fcfafa" wrapText="true">
+               <font>
+                  <Font name="Times New Roman Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
