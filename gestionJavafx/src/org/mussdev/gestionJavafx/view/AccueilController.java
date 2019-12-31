@@ -1,5 +1,6 @@
 package org.mussdev.gestionJavafx.view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import org.mussdev.gestionJavafx.Main;
 import org.mussdev.gestionJavafx.model.Article;
 import org.mussdev.gestionJavafx.model.ArticleVendu;
 import org.mussdev.gestionJavafx.model.Client;
@@ -24,7 +26,10 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -37,6 +42,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -185,7 +191,7 @@ public class AccueilController implements Initializable {
 	
 	@FXML
 	public Button btnVoirArticle,btnClient,btnVoirCommande, btnVoirDetailLivr,btnEnregistrerArticle,btnInserClient,
-	btnVoirGraphSoldeClient,btnActualiserClient;
+	btnVoirGraphSoldeClient,btnActualiserClient,btnSeDeconnecter;
 	
 	@FXML
 	public TextField txtFieldDescpArticle,txtFieldPrixUnitaire,txtFieldQteStock,txtFieldNomClient,txtFieldTelClient,textFieldNoClit,
@@ -221,6 +227,7 @@ public class AccueilController implements Initializable {
 	private Connection con;
 	private PreparedStatement pst,pstLignCom;
 	private int myId;
+	private AnchorPane ConnexionPane;
 	
 	
 	 @FXML 
@@ -1103,7 +1110,28 @@ public class AccueilController implements Initializable {
 		}
 	}
 
-	// Empêcher les modficiations sur le champ
+	// Se deconneter de la page principale
+	@FXML
+	public void seDeconnecter() throws IOException {
+		Stage stage = (Stage) btnSeDeconnecter.getScene().getWindow();
+		stage.close();
+		
+		// Ouvrir la fenêtre de connexion
+		Stage primaryStage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/org/mussdev/gestionJavafx/view/Connexion.fxml"));
+		ConnexionPane = (AnchorPane) loader.load();
+		
+		// Show the scene containing the Connexion
+		
+		Scene scene = new Scene(ConnexionPane);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
+		//Stage stageCon = new Stage();
+		//stageCon.show();
+		
+	}
 	
 }
 	

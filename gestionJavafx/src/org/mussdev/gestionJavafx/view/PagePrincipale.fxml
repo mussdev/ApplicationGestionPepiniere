@@ -45,11 +45,9 @@
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="insererCommandeCom" mnemonicParsing="false" onAction="#insererCommande" text="+ Inserer commande" />
                   <MenuItem fx:id="consulterCommandeCom" mnemonicParsing="false" onAction="#voirPaneConsulterCommande" text=" # Consulter commande" />
-                  <MenuItem fx:id="supprimerCommandeCom" mnemonicParsing="false" text="- Supprimer commande" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="insererLivraisonCom" mnemonicParsing="false" onAction="#appelFenetreEnregistLivraison" text="+ Inserer livraison" />
                   <MenuItem fx:id="menuItemconsulterLivraisonCom" mnemonicParsing="false" onAction="#consulterLivraisonCom" text="# Consulter livraison" />
-                  <MenuItem fx:id="supprimerLivraisonCom" mnemonicParsing="false" text="- Supprimer livraison" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Suivi">
@@ -577,7 +575,10 @@
       </Pane>
       <Pane fx:id="paneAccueil" prefHeight="425.0" prefWidth="800.0" style="-fx-background-color: #9DC183;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button layoutX="688.0" layoutY="8.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Se deconnecter" />
+            <Button fx:id="btnSeDeconnecter" layoutX="688.0" layoutY="8.0" mnemonicParsing="false" onAction="#seDeconnecter" prefHeight="25.0" prefWidth="104.0" text="Se deconnecter">
+               <font>
+                  <Font name="Times New Roman" size="13.0" />
+               </font></Button>
             <Label fx:id="labelInfoAccueil" layoutY="8.0" prefHeight="50.0" prefWidth="141.0" textFill="#fcfafa" wrapText="true">
                <font>
                   <Font name="Times New Roman Italic" size="12.0" />
