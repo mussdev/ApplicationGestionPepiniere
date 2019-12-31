@@ -1128,8 +1128,6 @@ public class AccueilController implements Initializable {
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		//Stage stageCon = new Stage();
-		//stageCon.show();
 		
 	}
 	
